@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Donny_Gesprekregistratie.Models.Gesprek>
+
+@{
+    ViewData["Title"] = "Gesprekken";
+}
+
+<div class="col-lg-20">
+    <a asp-action="Create">Registreer een nieuw gesprek</a>
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                    <h3 class="card-title"><b>Gesprek:</b> @Html.DisplayFor(modelItem => item.Onderwerp)</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Voornaam)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Achternaam)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Datum)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Melding)
+                            </th>
+                            <th>
+                                Medewerker
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Inhoud)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Afgesloten)
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Voornaam)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Achternaam)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Datum)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Melding)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Medewerker.UserName)
+                            </td>
+                            <td>
+                                <div style="max-height:100px; overflow:hidden">
+                                    @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Inhoud))
+                                </div>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Afgesloten)
+                            </td>
+                            <td>
+                                <a asp-controller="Reacties" asp-action="Create" asp-route-gespreksId="@item.Id">Reageer</a> |
+                                <a asp-action="Edit" asp-route-id="@item.Id">Aanpassen</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Verwijderen</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                @if (item.Reacties != null)
+                {
+                    <h5>Reacties</h5>
+
+                    @foreach (var r in item.Reacties)
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Datum
+                                    </th>
+                                    <th>
+                                        Inhoud
+                                    </th>
+                                    <th>
+                                        Medewerker
+                                    </th>
+
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @r.Datum
+                                    </td>
+                                    <td>
+                                        <div style="max-height:100px; overflow:hidden">
+                                            @Html.Raw(System.Web.HttpUtility.HtmlDecode(r.Inhoud))
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @if (r.Medewerker != null)
+                                        {
+                                            @r.Medewerker.UserName
+                                        }
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Reacties" asp-action="Details" asp-route-id="@r.Id">Details</a>
+                                        @if (r.Medewerker.Email == User.Identity.Name)
+                                        {
+                                            <a asp-controller="Reacties" asp-action="Delete" asp-route-id="@r.Id">Delete</a>
+
+                                        }
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                }
+            </div>
+        </div>
+    }
+</div>

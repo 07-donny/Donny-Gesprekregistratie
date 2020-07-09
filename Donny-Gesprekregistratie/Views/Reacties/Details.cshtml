@@ -1,0 +1,33 @@
+﻿@model Donny_Gesprekregistratie.Models.Reactie
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="col-lg-6">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Datum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Datum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Inhoud)
+        </dt>
+        <dd class="col-sm-10">
+            <div style="max-height:100px; overflow:hidden">
+                @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Inhoud))
+            </div>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gesprek)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gesprek.Id)
+        </dd>
+    </dl>
+    <div>
+        <a asp-controller="Gespreks" asp-action="Index">Terug naar gesprekken</a>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Donny_Gesprekregistratie.Models.Reactie>
+
+@{
+    ViewData["Title"] = "Reacties";
+}
+
+    <div class="col-lg-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Datum)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Inhoud)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gesprek)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    if (item.Medewerker.Email == User.Identity.Name)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Datum)
+                            </td>
+                            <td>
+                                <div style="max-height:100px; overflow:hidden">
+                                    @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Inhoud))
+                                </div>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gesprek.Id)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Aanpassen</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Verwijderen</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        </div>

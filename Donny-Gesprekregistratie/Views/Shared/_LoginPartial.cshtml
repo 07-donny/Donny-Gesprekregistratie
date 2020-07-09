@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="masthead-subheading">Welkom terug @User.Identity.Name</div>
+
+    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" asp-controller="Gespreks" asp-action="Index">Naar het dashboard</a>
+    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" asp-area="Identity" asp-page="/Account/Logout">Uitloggen</a>
+}
+else
+{
+    <div class="masthead-subheading">Welkom bij Donny's Angels</div>
+    <div class="masthead-heading text-uppercase">Het gespreksregistratie systeem van de eeuw!</div>
+
+    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" asp-area="Identity" asp-page="/Account/Register">Registreer</a>
+    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" asp-area="Identity" asp-page="/Account/Login">Login</a>
+}

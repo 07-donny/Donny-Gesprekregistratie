@@ -1,0 +1,58 @@
+﻿@model Donny_Gesprekregistratie.Models.Gesprek
+
+@{
+    ViewData["Title"] = "Gesprek Verwijderen";
+}
+
+<div class="col-lg-6">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Voornaam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Voornaam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Achternaam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Achternaam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Datum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Datum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Melding)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Melding)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Onderwerp)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Onderwerp)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Inhoud)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Inhoud)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Afgesloten)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Afgesloten)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Terug</a>
+    </form>
+</div>

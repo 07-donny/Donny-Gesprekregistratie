@@ -1,0 +1,38 @@
+﻿@model Donny_Gesprekregistratie.Models.Reactie
+
+@{
+    ViewData["Title"] = "Reactie Aanpassen";
+}
+
+<div class="col-lg-6">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="Datum" class="control-label">Reactie geplaatst op: @Model.Datum</label>
+            <input asp-for="Datum" type="hidden" value="@Model.Datum" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Inhoud" class="control-label"></label>
+            <input asp-for="Inhoud" class="form-control" />
+            <span asp-validation-for="Inhoud" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="GesprekId" type="hidden" class="form-control" asp-items="ViewBag.GesprekId" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <a asp-action="Index">Back to List</a>
+</div>
+<script src="~/js/tinymce/tinymce.min.js"></script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        tinymce.init({
+            selector: '#Inhoud'
+        });
+    </script>
+}

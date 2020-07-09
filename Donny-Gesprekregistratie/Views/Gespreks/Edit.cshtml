@@ -1,0 +1,60 @@
+﻿@model Donny_Gesprekregistratie.Models.Gesprek
+
+@{
+    ViewData["Title"] = "Gesprek aanpassen";
+}
+
+<div class="col-lg-6">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="Voornaam" class="control-label"></label>
+            <input asp-for="Voornaam" class="form-control" />
+            <span asp-validation-for="Voornaam" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Achternaam" class="control-label"></label>
+            <input asp-for="Achternaam" class="form-control" />
+            <span asp-validation-for="Achternaam" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Datum" class="control-label"></label>
+            <input asp-for="Datum" class="form-control" />
+            <span asp-validation-for="Datum" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Melding" class="control-label"></label>
+            <input asp-for="Melding" class="form-control" />
+            <span asp-validation-for="Melding" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Onderwerp" class="control-label"></label>
+            <input asp-for="Onderwerp" class="form-control" />
+            <span asp-validation-for="Onderwerp" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Inhoud" class="control-label"></label>
+            <input asp-for="Inhoud" class="form-control" />
+            <span asp-validation-for="Inhoud" class="text-danger"></span>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Afgesloten" /> @Html.DisplayNameFor(model => model.Afgesloten)
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script src="~/js/tinymce/tinymce.min.js"></script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        tinymce.init({
+            selector: '#Inhoud'
+        });
+    </script>
+}
